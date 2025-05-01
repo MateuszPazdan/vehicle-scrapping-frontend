@@ -53,9 +53,9 @@ function Nav() {
 
 				<div>
 					<NavElement
-						href='/admin/panel/cars'
+						href='/admin/panel/vehicles'
 						icon={<LiaCarCrashSolid />}
-						isChoosen={pathname.match('cars') ?? false}
+						isChoosen={pathname.match('vehicles') ?? false}
 					>
 						Pojazdy
 					</NavElement>

@@ -18,9 +18,9 @@ export default function MobileNav() {
 		<div className='md:hidden absolute bottom-0 left-0 w-full'>
 			<div className='flex flex-row gap-1 justify-around items-center mx-2 my-2 shadow-lg rounded-xl border-[1px] border-gray/10 bg-white'>
 				<MobileNavElement
-					href='/admin/panel/cars'
+					href='/admin/panel/vehicles'
 					icon={<LiaCarCrashSolid />}
-					isChoosen={pathname.match('cars') ?? false}
+					isChoosen={pathname.match('vehicles') ?? false}
 				>
 					Pojazdy
 				</MobileNavElement>
