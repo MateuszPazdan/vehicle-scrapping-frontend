@@ -23,7 +23,7 @@ export interface Vehicle {
 	price: number;
 }
 
-const authApiSlice = apiSlice.injectEndpoints({
+const vehiclesApiSlice = apiSlice.injectEndpoints({
 	endpoints: (builder) => ({
 		retrieveVehicles: builder.query<Vehicle[], VehicleFilters>({
 			query: (filters) => ({
@@ -32,7 +32,17 @@ const authApiSlice = apiSlice.injectEndpoints({
 				params: filters,
 			}),
 		}),
+		retrieveFiltersInfo: builder.query<
+			{ brands: string[]; models: string[] },
+			{ brand?: string }
+		>({
+			query: (params) => ({
+				url: `vehicles/filter_input?brand=${params?.brand}`,
+				method: 'GET',
+			}),
+		}),
 	}),
 });
 
-export const { useRetrieveVehiclesQuery } = authApiSlice;
+export const { useRetrieveVehiclesQuery, useRetrieveFiltersInfoQuery } =
+	vehiclesApiSlice;

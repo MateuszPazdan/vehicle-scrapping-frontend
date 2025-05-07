@@ -1,12 +1,32 @@
 'use client';
 
-import { VehicleFilters as VehicleFiltersParams } from '@/app/_redux/features/vehicleApiSlice';
+import {
+	useRetrieveFiltersInfoQuery,
+	VehicleFilters as VehicleFiltersParams,
+} from '@/app/_redux/features/vehicleApiSlice';
 import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 
 export default function VehicleFilters() {
-	const { register, handleSubmit, reset } = useForm<VehicleFiltersParams>();
+	const { register, handleSubmit, reset, getValues, watch } =
+		useForm<VehicleFiltersParams>();
 	const router = useRouter();
+	const {
+		data: filters,
+		refetch: refetchFilters,
+		isFetching: isFiltersFetching,
+	} = useRetrieveFiltersInfoQuery({
+		brand: getValues('brand') || '',
+	});
+	const availableBrands = filters?.brands || [];
+	const availableModels = filters?.models || [];
+
+	const selectedBrand = watch('brand');
+
+	useEffect(() => {
+		refetchFilters();
+	}, [selectedBrand, refetchFilters]);
 
 	const onSubmit = (data: VehicleFiltersParams) => {
 		const query = new URLSearchParams();
@@ -28,18 +48,30 @@ export default function VehicleFilters() {
 	return (
 		<form onSubmit={handleSubmit(onSubmit)} className='flex flex-col'>
 			<div className='grid grid-cols-3 gap-4 px-6'>
-				<input
-					type='text'
-					placeholder='Marka'
+				<select
 					{...register('brand')}
-					className='border border-gray/30 rounded-lg px-3 py-2 w-full '
-				/>
-				<input
-					type='text'
-					placeholder='Model'
+					className='border border-gray/30 rounded-lg px-3 py-2 w-full'
+					disabled={isFiltersFetching}
+				>
+					<option value=''>Wybierz markę</option>
+					{availableBrands.map((brand) => (
+						<option key={brand} value={brand}>
+							{brand}
+						</option>
+					))}
+				</select>
+				<select
 					{...register('model')}
-					className='border border-gray/30 rounded-lg px-3 py-2 w-full '
-				/>
+					className='border border-gray/30 rounded-lg px-3 py-2 w-full'
+					disabled={isFiltersFetching}
+				>
+					<option value=''>Wybierz model</option>
+					{availableModels.map((model) => (
+						<option key={model} value={model}>
+							{model}
+						</option>
+					))}
+				</select>
 				<input
 					type='number'
 					placeholder='Rok produkcji'
