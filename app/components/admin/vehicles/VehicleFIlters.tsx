@@ -4,18 +4,21 @@ import {
 	useRetrieveFiltersInfoQuery,
 	VehicleFilters as VehicleFiltersParams,
 } from '@/app/_redux/features/vehicleApiSlice';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
+import Spinner from '../../Spinner';
 
 export default function VehicleFilters() {
 	const { register, handleSubmit, reset, getValues, watch } =
 		useForm<VehicleFiltersParams>();
 	const router = useRouter();
+	const searchParams = useSearchParams();
 	const {
 		data: filters,
 		refetch: refetchFilters,
 		isFetching: isFiltersFetching,
+		isLoading,
 	} = useRetrieveFiltersInfoQuery({
 		brand: getValues('brand') || '',
 	});
@@ -23,6 +26,13 @@ export default function VehicleFilters() {
 	const availableModels = filters?.models || [];
 
 	const selectedBrand = watch('brand');
+
+	useEffect(() => {
+		const params = Object.fromEntries(
+			searchParams.entries()
+		) as VehicleFiltersParams;
+		reset(params);
+	}, [searchParams, reset]);
 
 	useEffect(() => {
 		refetchFilters();
@@ -44,6 +54,14 @@ export default function VehicleFilters() {
 		reset();
 		router.push('?');
 	};
+
+	if (isLoading) {
+		return (
+			<div className='py-10'>
+				<Spinner size='medium' />
+			</div>
+		);
+	}
 
 	return (
 		<form onSubmit={handleSubmit(onSubmit)} className='flex flex-col'>
@@ -91,7 +109,7 @@ export default function VehicleFilters() {
 					className='border border-gray/30 rounded-lg px-3 py-2 w-full '
 				/>
 			</div>
-			<div className='flex gap-4 px-6 self-end'>
+			<div className='flex gap-4 px-6 self-end mt-4'>
 				<button
 					type='submit'
 					className='bg-main text-white px-4 py-2 rounded hover:bg-opacity-90 transition'
