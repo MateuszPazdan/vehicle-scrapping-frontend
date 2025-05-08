@@ -28,13 +28,6 @@ export default function VehicleFilters() {
 	const selectedBrand = watch('brand');
 
 	useEffect(() => {
-		const params = Object.fromEntries(
-			searchParams.entries()
-		) as VehicleFiltersParams;
-		reset(params);
-	}, [searchParams, reset]);
-
-	useEffect(() => {
 		refetchFilters();
 	}, [selectedBrand, refetchFilters]);
 
@@ -66,59 +59,111 @@ export default function VehicleFilters() {
 	return (
 		<form onSubmit={handleSubmit(onSubmit)} className='flex flex-col'>
 			<div className='grid grid-cols-3 gap-4 px-6'>
-				<select
-					{...register('brand')}
-					className='border border-gray/30 rounded-lg px-3 py-2 w-full'
-					disabled={isFiltersFetching}
-				>
-					<option value=''>Wybierz markę</option>
-					{availableBrands.map((brand) => (
-						<option key={brand} value={brand}>
-							{brand}
+				<div className='flex flex-col'>
+					<label className='text-sm text-gray-600 mb-1'>Marka</label>
+					<select
+						{...register('brand')}
+						className='border border-gray/30 rounded-lg px-3 py-2 w-full'
+						disabled={isFiltersFetching}
+						defaultValue={searchParams.get('brand') || ''}
+					>
+						<option value=''>Wybierz markę</option>
+						{availableBrands.map((brand) => (
+							<option key={brand} value={brand}>
+								{brand}
+							</option>
+						))}
+					</select>
+				</div>
+				<div className='flex flex-col'>
+					<label className='text-sm text-gray-600 mb-1'>Model</label>
+					<select
+						{...register('model')}
+						className='border border-gray/30 rounded-lg px-3 py-2 w-full'
+						disabled={isFiltersFetching}
+						defaultValue={searchParams.get('model') || ''}
+					>
+						<option value=''>Wybierz model</option>
+						{availableModels.map((model) => (
+							<option key={model} value={model}>
+								{model}
+							</option>
+						))}
+					</select>
+				</div>
+				<div className='flex flex-col'>
+					<label className='text-sm text-gray-600 mb-1'>Rok produkcji</label>
+					<input
+						type='number'
+						placeholder='Rok produkcji'
+						{...register('year_of_production')}
+						className='border border-gray/30 rounded-lg px-3 py-2 w-full '
+						defaultValue={searchParams.get('year_of_production') || ''}
+						min={1900}
+						max={new Date().getFullYear()}
+					/>
+				</div>
+				<div className='flex flex-col'>
+					<label className='text-sm text-gray-600 mb-1'>Nr rejestracyjny</label>
+					<input
+						type='text'
+						placeholder='Nr rejestracyjny'
+						{...register('registration_number')}
+						className='border border-gray/30 rounded-lg px-3 py-2 w-full '
+						defaultValue={searchParams.get('registration_number') || ''}
+					/>
+				</div>
+				<div className='flex flex-col'>
+					<label className='text-sm text-gray-600 mb-1'>VIN</label>
+					<input
+						type='text'
+						placeholder='VIN'
+						{...register('vin')}
+						className='border border-gray/30 rounded-lg px-3 py-2 w-full '
+						defaultValue={searchParams.get('vin') || ''}
+					/>
+				</div>
+				<div className='flex flex-col'>
+					<label className='text-sm text-gray-600 mb-1'>Status pojazdu</label>
+					<select
+						{...register('vehicle_status')}
+						className='border border-gray/30 rounded-lg px-3 py-2 w-full'
+						disabled={isFiltersFetching}
+						defaultValue={searchParams.get('vehicle_status') || ''}
+					>
+						<option value=''>Wybierz status</option>
+						<option value='RECEIVED_FOR_DISMANTLING'>
+							Przyjęty do demontażu
 						</option>
-					))}
-				</select>
-				<select
-					{...register('model')}
-					className='border border-gray/30 rounded-lg px-3 py-2 w-full'
-					disabled={isFiltersFetching}
-				>
-					<option value=''>Wybierz model</option>
-					{availableModels.map((model) => (
-						<option key={model} value={model}>
-							{model}
-						</option>
-					))}
-				</select>
-				<input
-					type='number'
-					placeholder='Rok produkcji'
-					{...register('year_of_production')}
-					className='border border-gray/30 rounded-lg px-3 py-2 w-full '
-				/>
-				<input
-					type='text'
-					placeholder='Nr rejestracyjny'
-					{...register('registration_number')}
-					className='border border-gray/30 rounded-lg px-3 py-2 w-full '
-				/>
-				<input
-					type='text'
-					placeholder='VIN'
-					{...register('vin')}
-					className='border border-gray/30 rounded-lg px-3 py-2 w-full '
-				/>
+						<option value='DISMANTLED'>Zdemontowany</option>
+					</select>
+				</div>
+				<div className='flex flex-col'>
+					<label className='text-sm text-gray-600 mb-1'>
+						Pesel właściciela
+					</label>
+					<input
+						type='text'
+						placeholder='Pesel właściciela'
+						{...register('owner_pesel')}
+						className='border border-gray/30 rounded-lg px-3 py-2 w-full '
+						defaultValue={searchParams.get('owner_pesel') || ''}
+						maxLength={11}
+						inputMode='numeric'
+						pattern='[0-9]*'
+					/>
+				</div>
 			</div>
 			<div className='flex gap-4 px-6 self-end mt-4'>
 				<button
 					type='submit'
-					className='bg-main text-white px-4 py-2 rounded hover:bg-opacity-90 transition'
+					className='bg-main text-white px-4 py-2 rounded hover:bg-mainHover duration-300 transition'
 				>
 					Filtruj
 				</button>
 				<button
 					type='button'
-					className='bg-gray-200 px-4 py-2 rounded hover:bg-gray-300 transition'
+					className='bg-gray-200 px-4 py-2 rounded hover:bg-gray/10 duration-300 transition'
 					onClick={() => handleClear()}
 				>
 					Wyczyść

@@ -1,11 +1,15 @@
 import { apiSlice } from '../services/apiSlice';
 
+export type VehicleStatus = 'RECEIVED_FOR_DISMANTLING' | 'DISMANTLED';
+
 export interface VehicleFilters {
 	brand?: string;
 	model?: string;
 	year_of_production?: number;
 	vin?: string;
 	registration_number?: string;
+	vehicle_status?: VehicleStatus | string;
+	owner_pesel?: string;
 }
 
 export interface Vehicle {
@@ -17,7 +21,7 @@ export interface Vehicle {
 	registration_number: string;
 	registration_certificate_number: string;
 	weight: number;
-	status: 'RECEIVED_FOR_DISMANTLING' | 'DISMANTLED';
+	status: VehicleStatus;
 	receivedAt: string;
 	dismantledAt: string | null;
 	price: number;

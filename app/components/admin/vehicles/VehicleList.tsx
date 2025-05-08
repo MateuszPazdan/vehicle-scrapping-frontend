@@ -13,6 +13,8 @@ export default function VehicleList() {
 		year_of_production:
 			Number(searchParams.get('year_of_production')) || undefined,
 		registration_number: searchParams.get('registration_number') || '',
+		vehicle_status: searchParams.get('vehicle_status') || undefined,
+		owner_pesel: searchParams.get('owner_pesel') || undefined,
 	});
 	const router = useRouter();
 
@@ -25,7 +27,7 @@ export default function VehicleList() {
 			) : vehicles?.length ? (
 				<>
 					<table className='min-w-full rounded-md overflow-hidden'>
-						<thead className='bg-main/30'>
+						<thead className='bg-main text-white'>
 							<tr className='text-left'>
 								<th className='px-4 py-2'>Marka</th>
 								<th className='px-4 py-2'>Model</th>
@@ -44,7 +46,7 @@ export default function VehicleList() {
 									onClick={() =>
 										router.push(`/admin/panel/vehicles/${vehicle.id}`)
 									}
-									className='border-t border-gray-200 hover:bg-main hover:text-white transition-colors cursor-pointer text-base'
+									className='border-t border-gray-200 hover:bg-mainHover hover:text-white transition-colors cursor-pointer text-base'
 								>
 									<td className='px-4 py-2'>{vehicle.brand}</td>
 									<td className='px-4 py-2'>{vehicle.model}</td>
