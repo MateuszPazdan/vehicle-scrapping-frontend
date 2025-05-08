@@ -4,6 +4,7 @@ import { OwnerFilters as OwnerFiltersParams } from '@/app/_redux/features/ownerA
 import { useSearchParams } from 'next/navigation';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
+import Button from '../../Button';
 
 export default function OwnerFilters() {
 	const { register, handleSubmit, reset } = useForm<OwnerFiltersParams>();
@@ -31,7 +32,7 @@ export default function OwnerFilters() {
 		<form onSubmit={handleSubmit(onSubmit)} className='flex flex-col'>
 			<div className='grid grid-cols-3 gap-4 px-6'>
 				<div className='flex flex-col'>
-					<label className='text-sm text-gray-600 mb-1'>Imię</label>
+					<label className='text-sm text-gray mb-1'>Imię</label>
 					<input
 						type='text'
 						placeholder='Imię'
@@ -41,7 +42,7 @@ export default function OwnerFilters() {
 					/>
 				</div>
 				<div className='flex flex-col'>
-					<label className='text-sm text-gray-600 mb-1'>Nazwisko</label>
+					<label className='text-sm text-gray mb-1'>Nazwisko</label>
 					<input
 						type='text'
 						placeholder='Nazwisko'
@@ -51,7 +52,7 @@ export default function OwnerFilters() {
 					/>
 				</div>
 				<div className='flex flex-col'>
-					<label className='text-sm text-gray-600 mb-1'>PESEL</label>
+					<label className='text-sm text-gray mb-1'>PESEL</label>
 					<input
 						type='text'
 						placeholder='PESEL'
@@ -61,7 +62,7 @@ export default function OwnerFilters() {
 					/>
 				</div>
 				<div className='flex flex-col'>
-					<label className='text-sm text-gray-600 mb-1'>Adres</label>
+					<label className='text-sm text-gray mb-1'>Adres</label>
 					<input
 						type='text'
 						placeholder='Adres'
@@ -71,7 +72,7 @@ export default function OwnerFilters() {
 					/>
 				</div>
 				<div className='flex flex-col'>
-					<label className='text-sm text-gray-600 mb-1'>Numer dowodu</label>
+					<label className='text-sm text-gray mb-1'>Numer dowodu</label>
 					<input
 						type='text'
 						placeholder='Numer dowodu'
@@ -82,12 +83,7 @@ export default function OwnerFilters() {
 				</div>
 			</div>
 			<div className='flex gap-4 px-6 self-end mt-4'>
-				<button
-					type='submit'
-					className='bg-main text-white px-4 py-2 rounded hover:bg-mainHover duration-300 transition'
-				>
-					Filtruj
-				</button>
+				<Button type='submit'>Filtruj</Button>
 				<button
 					type='button'
 					className='bg-gray-200 px-4 py-2 rounded hover:bg-gray/10 duration-300 transition'

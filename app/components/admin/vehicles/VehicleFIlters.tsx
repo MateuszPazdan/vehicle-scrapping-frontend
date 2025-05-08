@@ -8,9 +8,10 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import Spinner from '../../Spinner';
+import Button from '../../Button';
 
 export default function VehicleFilters() {
-	const { register, handleSubmit, reset, getValues, watch } =
+	const { register, handleSubmit, reset, getValues, watch, resetField } =
 		useForm<VehicleFiltersParams>();
 	const router = useRouter();
 	const searchParams = useSearchParams();
@@ -28,8 +29,9 @@ export default function VehicleFilters() {
 	const selectedBrand = watch('brand');
 
 	useEffect(() => {
+		resetField('model', { defaultValue: '' });
 		refetchFilters();
-	}, [selectedBrand, refetchFilters]);
+	}, [selectedBrand, refetchFilters, resetField]);
 
 	const onSubmit = (data: VehicleFiltersParams) => {
 		const query = new URLSearchParams();
@@ -45,6 +47,7 @@ export default function VehicleFilters() {
 
 	const handleClear = () => {
 		reset();
+		resetField('brand', { defaultValue: '' });
 		router.push('?');
 	};
 
@@ -60,14 +63,16 @@ export default function VehicleFilters() {
 		<form onSubmit={handleSubmit(onSubmit)} className='flex flex-col'>
 			<div className='grid grid-cols-3 gap-4 px-6'>
 				<div className='flex flex-col'>
-					<label className='text-sm text-gray-600 mb-1'>Marka</label>
+					<label className='text-sm text-gray mb-1'>Marka</label>
 					<select
 						{...register('brand')}
 						className='border border-gray/30 rounded-lg px-3 py-2 w-full'
 						disabled={isFiltersFetching}
 						defaultValue={searchParams.get('brand') || ''}
 					>
-						<option value=''>Wybierz markę</option>
+						<option value='' defaultChecked>
+							Wybierz markę
+						</option>
 						{availableBrands.map((brand) => (
 							<option key={brand} value={brand}>
 								{brand}
@@ -76,14 +81,16 @@ export default function VehicleFilters() {
 					</select>
 				</div>
 				<div className='flex flex-col'>
-					<label className='text-sm text-gray-600 mb-1'>Model</label>
+					<label className='text-sm text-gray mb-1'>Model</label>
 					<select
 						{...register('model')}
 						className='border border-gray/30 rounded-lg px-3 py-2 w-full'
 						disabled={isFiltersFetching}
 						defaultValue={searchParams.get('model') || ''}
 					>
-						<option value=''>Wybierz model</option>
+						<option value='' defaultChecked>
+							Wybierz model
+						</option>
 						{availableModels.map((model) => (
 							<option key={model} value={model}>
 								{model}
@@ -92,7 +99,7 @@ export default function VehicleFilters() {
 					</select>
 				</div>
 				<div className='flex flex-col'>
-					<label className='text-sm text-gray-600 mb-1'>Rok produkcji</label>
+					<label className='text-sm text-gray mb-1'>Rok produkcji</label>
 					<input
 						type='number'
 						placeholder='Rok produkcji'
@@ -104,7 +111,7 @@ export default function VehicleFilters() {
 					/>
 				</div>
 				<div className='flex flex-col'>
-					<label className='text-sm text-gray-600 mb-1'>Nr rejestracyjny</label>
+					<label className='text-sm text-gray mb-1'>Nr rejestracyjny</label>
 					<input
 						type='text'
 						placeholder='Nr rejestracyjny'
@@ -114,7 +121,7 @@ export default function VehicleFilters() {
 					/>
 				</div>
 				<div className='flex flex-col'>
-					<label className='text-sm text-gray-600 mb-1'>VIN</label>
+					<label className='text-sm text-gray mb-1'>VIN</label>
 					<input
 						type='text'
 						placeholder='VIN'
@@ -124,7 +131,7 @@ export default function VehicleFilters() {
 					/>
 				</div>
 				<div className='flex flex-col'>
-					<label className='text-sm text-gray-600 mb-1'>Status pojazdu</label>
+					<label className='text-sm text-gray mb-1'>Status pojazdu</label>
 					<select
 						{...register('vehicle_status')}
 						className='border border-gray/30 rounded-lg px-3 py-2 w-full'
@@ -139,7 +146,7 @@ export default function VehicleFilters() {
 					</select>
 				</div>
 				<div className='flex flex-col'>
-					<label className='text-sm text-gray-600 mb-1'>
+					<label className='text-sm text-gray mb-1'>
 						Pesel właściciela
 					</label>
 					<input
@@ -155,12 +162,7 @@ export default function VehicleFilters() {
 				</div>
 			</div>
 			<div className='flex gap-4 px-6 self-end mt-4'>
-				<button
-					type='submit'
-					className='bg-main text-white px-4 py-2 rounded hover:bg-mainHover duration-300 transition'
-				>
-					Filtruj
-				</button>
+				<Button type='submit'>Filtruj</Button>
 				<button
 					type='button'
 					className='bg-gray-200 px-4 py-2 rounded hover:bg-gray/10 duration-300 transition'

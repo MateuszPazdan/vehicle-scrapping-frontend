@@ -8,8 +8,13 @@ interface Props {
 export default function ModalHeader({ onCloseModal, title }: Props) {
 	return (
 		<div className='flex flex-row justify-between'>
-			<p className='flex justify-center items-center text-xl'>{title}</p>
-			<button className='text-4xl self-end' onClick={onCloseModal}>
+			<p className='flex justify-center items-center text-xl font-semibold'>
+				{title}
+			</p>
+			<button
+				className='text-4xl self-end rounded hover:bg-gray/10 duration-300 transition'
+				onClick={onCloseModal}
+			>
 				<BsX />
 			</button>
 		</div>

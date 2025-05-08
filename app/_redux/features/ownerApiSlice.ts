@@ -17,8 +17,23 @@ export interface Owner {
 	id_number: string;
 }
 
+export interface OwnerBody {
+	name: string;
+	surname: string;
+	pesel: string;
+	address: string;
+	id_number: string;
+}
+
 const ownerApiSlice = apiSlice.injectEndpoints({
 	endpoints: (builder) => ({
+		createOwner: builder.mutation<Owner, OwnerBody>({
+			query: (owner) => ({
+				url: '/owners',
+				method: 'POST',
+				body: owner,
+			}),
+		}),
 		retrieveOwners: builder.query<Owner[], OwnerFilters>({
 			query: (filters) => ({
 				url: '/owners',
@@ -29,4 +44,4 @@ const ownerApiSlice = apiSlice.injectEndpoints({
 	}),
 });
 
-export const { useRetrieveOwnersQuery } = ownerApiSlice;
+export const { useCreateOwnerMutation, useRetrieveOwnersQuery } = ownerApiSlice;

@@ -40,7 +40,7 @@ function Button({
 		<>
 			{isButton && (
 				<button
-					className={`px-7 py-3 rounded-xl text-white bg-main hover:bg-mainHover transition-colors duration-300 hover:cursor-pointer text-center ${className} ${
+					className={`px-4 py-2 rounded text-white bg-main hover:bg-mainHover transition-colors duration-300 hover:cursor-pointer text-center ${className} ${
 						isLoading && 'hover:cursor-not-allowed'
 					}`}
 					disabled={disabled || isLoading}
@@ -59,7 +59,7 @@ function Button({
 			{type === 'link' && (
 				<Link
 					href={href}
-					className={`px-6 py-2 rounded-xl text-white bg-main hover:bg-mainHover transition-colors duration-300 text-center`}
+					className={`px-4 py-2 rounded text-white bg-main hover:bg-mainHover transition-colors duration-300 text-center`}
 				>
 					{children}
 				</Link>
