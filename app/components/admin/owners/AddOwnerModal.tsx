@@ -38,6 +38,9 @@ export default function AddOwnerModal({ onCloseModal }: AddOwnerModalProps) {
 				onCloseModal();
 			})
 			.catch((error) => {
+				toast.error(
+					error.data.message || 'Wystąpił błąd podczas dodawania właściciela!'
+				);
 				console.error('Error creating owner:', error);
 			});
 	};
