@@ -50,16 +50,21 @@ export default function VehicleDetails({ vehicleId }: VehicleDetailsProps) {
 			<div className='flex justify-between items-center pb-8'>
 				<p className='text-3xl font-semibold'>Dane pojazdu</p>
 				<div className='space-x-2'>
-					<Modal>
-						<Modal.Open opens='vehicle_status'>
-							<button className='bg-main hover:bg-mainHover text-white font-medium py-2 px-4 rounded-lg transition-colors'>
-								Demontuj pojazd
-							</button>
-						</Modal.Open>
-						<Modal.Window name='vehicle_status'>
-							<VehicleDismantlingModal onCloseModal={() => undefined} />
-						</Modal.Window>
-					</Modal>
+					{vehicle?.status === 'RECEIVED_FOR_DISMANTLING' && (
+						<Modal>
+							<Modal.Open opens='vehicle_status'>
+								<button className='bg-main hover:bg-mainHover text-white font-medium py-2 px-4 rounded-lg transition-colors'>
+									Demontuj pojazd
+								</button>
+							</Modal.Open>
+							<Modal.Window name='vehicle_status'>
+								<VehicleDismantlingModal
+									vehicleId={vehicleId}
+									onCloseModal={() => undefined}
+								/>
+							</Modal.Window>
+						</Modal>
+					)}
 					<Modal>
 						<Modal.Open opens='vehicle_status'>
 							<button className='bg-main hover:bg-mainHover text-white font-medium py-2 px-4 rounded-lg transition-colors'>

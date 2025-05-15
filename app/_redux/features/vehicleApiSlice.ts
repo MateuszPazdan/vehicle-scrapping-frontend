@@ -80,6 +80,12 @@ const vehiclesApiSlice = apiSlice.injectEndpoints({
 				method: 'GET',
 			}),
 		}),
+		dismantleVehicle: builder.mutation<Vehicle, number>({
+			query: (id) => ({
+				url: `/vehicles/status/${id}`,
+				method: 'PATCH',
+			}),
+		}),
 	}),
 });
 
@@ -88,4 +94,5 @@ export const {
 	useRetrieveVehiclesQuery,
 	useRetrieveVehicleQuery,
 	useRetrieveFiltersInfoQuery,
+	useDismantleVehicleMutation,
 } = vehiclesApiSlice;
