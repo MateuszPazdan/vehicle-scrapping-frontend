@@ -2,6 +2,10 @@
 
 import { useRetrieveVehicleQuery } from '@/app/_redux/features/vehicleApiSlice';
 import Spinner from '../../Spinner';
+import Modal from '../../Modal';
+import VehicleDismantlingModal from './VehicleDismantlingModal';
+import VehicleDismantlingCertificateModal from './VehicleDismantlingCertificateModal';
+import AssignWasteModal from './AssignWasteModal';
 
 interface VehicleDetailsProps {
 	vehicleId: number;
@@ -43,7 +47,33 @@ export default function VehicleDetails({ vehicleId }: VehicleDetailsProps) {
 
 	return (
 		<div className=''>
-			<p className='text-3xl font-semibold  pb-8'>Dane pojazdu</p>
+			<div className='flex justify-between items-center pb-8'>
+				<p className='text-3xl font-semibold'>Dane pojazdu</p>
+				<div className='space-x-2'>
+					<Modal>
+						<Modal.Open opens='vehicle_status'>
+							<button className='bg-main hover:bg-mainHover text-white font-medium py-2 px-4 rounded-lg transition-colors'>
+								Demontuj pojazd
+							</button>
+						</Modal.Open>
+						<Modal.Window name='vehicle_status'>
+							<VehicleDismantlingModal onCloseModal={() => undefined} />
+						</Modal.Window>
+					</Modal>
+					<Modal>
+						<Modal.Open opens='vehicle_status'>
+							<button className='bg-main hover:bg-mainHover text-white font-medium py-2 px-4 rounded-lg transition-colors'>
+								Wystaw zaświadczenie
+							</button>
+						</Modal.Open>
+						<Modal.Window name='vehicle_status'>
+							<VehicleDismantlingCertificateModal
+								onCloseModal={() => undefined}
+							/>
+						</Modal.Window>
+					</Modal>
+				</div>
+			</div>
 			<div className='grid grid-cols-2 gap-4 mb-6'>
 				<Info label='Marka' value={vehicle?.brand} />
 				<Info label='Model' value={vehicle?.model} />
@@ -90,6 +120,22 @@ export default function VehicleDetails({ vehicleId }: VehicleDetailsProps) {
 					))}
 				</tbody>
 			</table>
+
+			<div className='flex justify-between items-center py-8'>
+				<p className='text-3xl font-semibold'>Przypisane odpady</p>
+				<div className='space-x-2'>
+					<Modal>
+						<Modal.Open opens='vehicle_status'>
+							<button className='bg-main hover:bg-mainHover text-white font-medium py-2 px-4 rounded-lg transition-colors'>
+								Przypisz odpady
+							</button>
+						</Modal.Open>
+						<Modal.Window name='vehicle_status'>
+							<AssignWasteModal onCloseModal={() => undefined} />
+						</Modal.Window>
+					</Modal>
+				</div>
+			</div>
 		</div>
 	);
 }

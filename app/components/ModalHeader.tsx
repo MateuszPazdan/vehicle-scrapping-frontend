@@ -7,7 +7,7 @@ interface Props {
 
 export default function ModalHeader({ onCloseModal, title }: Props) {
 	return (
-		<div className='flex flex-row justify-between'>
+		<div className='flex flex-row justify-between w-full items-center '>
 			<p className='flex justify-center items-center text-2xl font-semibold'>
 				{title}
 			</p>
