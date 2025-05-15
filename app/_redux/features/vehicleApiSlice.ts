@@ -1,4 +1,5 @@
 import { apiSlice } from '../services/apiSlice';
+import { Owner } from './ownerApiSlice';
 
 export type VehicleStatus = 'RECEIVED_FOR_DISMANTLING' | 'DISMANTLED';
 
@@ -25,6 +26,10 @@ export interface Vehicle {
 	receivedAt: string;
 	dismantledAt: string | null;
 	price: number;
+}
+
+export interface VehicleDetails extends Vehicle {
+	owners: Owner[];
 }
 
 export interface VehicleBody {
@@ -60,6 +65,12 @@ const vehiclesApiSlice = apiSlice.injectEndpoints({
 				params: filters,
 			}),
 		}),
+		retrieveVehicle: builder.query<VehicleDetails, number>({
+			query: (id) => ({
+				url: `/vehicles/details/${id}`,
+				method: 'GET',
+			}),
+		}),
 		retrieveFiltersInfo: builder.query<
 			{ brands: string[]; models: string[] },
 			{ brand?: string }
@@ -75,5 +86,6 @@ const vehiclesApiSlice = apiSlice.injectEndpoints({
 export const {
 	useCreateVehicleMutation,
 	useRetrieveVehiclesQuery,
+	useRetrieveVehicleQuery,
 	useRetrieveFiltersInfoQuery,
 } = vehiclesApiSlice;
