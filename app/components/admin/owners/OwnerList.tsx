@@ -52,7 +52,7 @@ export default function OwnerList() {
 													`${process.env.NEXT_PUBLIC_FRONTEND_URL}/admin/panel/vehicles?owner_pesel=${owner.pesel}`
 												)
 											}
-											className='text-main hover:text-mainHover font-medium transition-colors'
+											className='text-main hover:text-mainHover font-medium transition-colors duration-300'
 										>
 											Wyświetl pojazdy
 										</button>
