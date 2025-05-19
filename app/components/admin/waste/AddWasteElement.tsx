@@ -7,10 +7,10 @@ import AddWasteModal from './AddWasteModal';
 export default function AddWasteElement() {
 	return (
 		<Modal>
-			<Modal.Open opens='addVehicle'>
+			<Modal.Open opens='addStorage'>
 				<Button type='button'>Dodaj odpad</Button>
 			</Modal.Open>
-			<Modal.Window name='addVehicle'>
+			<Modal.Window name='addStorage'>
 				<AddWasteModal onCloseModal={() => undefined} />
 			</Modal.Window>
 		</Modal>
