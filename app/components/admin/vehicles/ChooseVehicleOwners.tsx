@@ -4,8 +4,6 @@ import {
 } from '@/app/_redux/features/ownerApiSlice';
 import { useState } from 'react';
 import { BsX } from 'react-icons/bs';
-import Modal from '../../Modal';
-import AddOwnerModal from '../owners/AddOwnerModal';
 
 interface ChooseVehicleOwnersProps {
 	choosenOwners: Owner[];

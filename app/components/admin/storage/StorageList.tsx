@@ -24,7 +24,7 @@ export default function StorageList() {
 					<table className='min-w-full rounded-md overflow-hidden'>
 						<thead className='bg-main text-white'>
 							<tr className='text-left'>
-								<th className='px-4 py-2'>Nazwa stanowiska</th>
+								<th className='px-4 py-2'>Nazwa magazynu</th>
 								<th className='px-4 py-2'>Nazwa odpadu</th>
 								<th className='px-4 py-2'>Aktualne zapełnienie (kg)</th>
 								<th className='px-4 py-2'>Akcje</th>
@@ -39,14 +39,14 @@ export default function StorageList() {
 									<td className='px-4 py-2'>{storage?.locationNr}</td>
 									<td className='px-4 py-2'>{storage?.wasteType?.name}</td>
 									<td className='px-4 py-2'>
-										{storage?.currentMass > 0 && '\u00A0'}
+										{storage?.currentMass >= 0 && '\u00A0'}
 										{storage?.currentMass.toFixed(2)}
 									</td>
 									<td className='px-4 py-2'>
 										<Modal>
 											<Modal.Open opens={`editStorage${storage.id}`}>
 												<button className='text-main hover:text-mainHover font-medium transition-colors duration-300'>
-													Edytuj stanowisko
+													Edytuj magazyn
 												</button>
 											</Modal.Open>
 											<Modal.Window name={`editStorage${storage.id}`}>

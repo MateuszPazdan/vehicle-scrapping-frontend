@@ -37,27 +37,27 @@ export default function AddStorageModal({
 		})
 			.unwrap()
 			.then(() => {
-				toast.success('Stanowisko zostało dodane!');
+				toast.success('Magazyn został dodany!');
 				refetchStorages();
 				onCloseModal();
 			})
 			.catch((error) => {
 				toast.error(
-					error.data?.message || 'Wystąpił błąd podczas dodawania stanowiska!'
+					error.data?.message || 'Wystąpił błąd podczas dodawania magazynu!'
 				);
 				console.error('Error creating storage:', error);
 			});
 	};
 	return (
 		<div className='py-2'>
-			<ModalHeader onCloseModal={onCloseModal} title='Dodaj stanowisko' />
+			<ModalHeader onCloseModal={onCloseModal} title='Dodaj magazyn' />
 			<form onSubmit={handleSubmit(onSubmit)} className='mt-4 space-y-4'>
 				<div className='flex flex-col'>
-					<label className='text-sm text-gray mb-1'>Nazwa stanowiska</label>
+					<label className='text-sm text-gray mb-1'>Nazwa magazynu</label>
 					<input
 						type='text'
-						placeholder='Nazwa stanowiska'
-						{...register('locationNr', { required: 'Podaj nazwę stanowiska' })}
+						placeholder='Nazwa magazynu'
+						{...register('locationNr', { required: 'Podaj nazwę magazynu' })}
 						className='border border-gray/30 rounded-lg px-3 py-2'
 					/>
 					<p className='text-red-500 text-xs pt-1'>
@@ -68,7 +68,7 @@ export default function AddStorageModal({
 
 				<div className='flex justify-end gap-4 pt-8'>
 					<Button type='submit' disabled={isLoadingStorage}>
-						{isLoadingStorage ? 'Dodawanie...' : 'Dodaj stanowisko'}
+						{isLoadingStorage ? 'Dodawanie...' : 'Dodaj magazyn'}
 					</Button>
 
 					<button

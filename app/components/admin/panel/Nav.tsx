@@ -78,7 +78,7 @@ function Nav() {
 						icon={<BsColumnsGap />}
 						isChoosen={pathname.match('storage') ?? false}
 					>
-						Stanowiska
+						Magazyny
 					</NavElement>
 					<NavElement
 						href='/admin/panel/transactions'

@@ -49,7 +49,7 @@ export default function MobileNav() {
 					icon={<BsColumnsGap />}
 					isChoosen={pathname.match('storage') ?? false}
 				>
-					Stanowiska
+					Magazyny
 				</MobileNavElement>
 				<MobileNavElement
 					href='/admin/panel/transactions'

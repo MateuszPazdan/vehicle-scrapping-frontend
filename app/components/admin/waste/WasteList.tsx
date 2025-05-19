@@ -37,7 +37,7 @@ export default function WasteList() {
 								>
 									<td className='px-4 py-2'>{waste?.name}</td>
 									<td className='px-4 py-2'>
-										{waste?.pricePerKg > 0 && '\u00A0'}
+										{waste?.pricePerKg >= 0 && '\u00A0'}
 										{waste?.pricePerKg.toFixed(2)}
 									</td>
 									<td className='px-4 py-2'>

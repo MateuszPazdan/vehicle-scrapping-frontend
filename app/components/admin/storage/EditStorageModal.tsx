@@ -32,7 +32,7 @@ export default function EditStorageModal({
 		updateStorage({ id: storage?.id, ...data })
 			.unwrap()
 			.then(() => {
-				toast.success('Stanowisko zostało zaktualizowane!');
+				toast.success('Magazyn został zaktualizowany!');
 				refetchStorages();
 				onCloseModal();
 			})
@@ -46,14 +46,14 @@ export default function EditStorageModal({
 
 	return (
 		<div className=''>
-			<ModalHeader onCloseModal={onCloseModal} title='Edycja stanowiska' />
+			<ModalHeader onCloseModal={onCloseModal} title='Edycja magazynu' />
 			<form onSubmit={handleSubmit(onSubmit)} className='mt-4 space-y-4'>
 				<div className='flex flex-col'>
-					<label className='text-sm text-gray mb-1'>Nazwa stanowiska</label>
+					<label className='text-sm text-gray mb-1'>Nazwa magazynu</label>
 					<input
 						type='text'
-						placeholder='Nazwa stanowiska'
-						{...register('locationNr', { required: 'Podaj nazwę stanowiska' })}
+						placeholder='Nazwa magazynu'
+						{...register('locationNr', { required: 'Podaj nazwę magazynu' })}
 						className='border border-gray/30 rounded-lg px-3 py-2'
 					/>
 					<p className='text-red-500 text-xs pt-1'>

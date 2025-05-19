@@ -8,7 +8,7 @@ export default function AddStorageElement() {
 	return (
 		<Modal>
 			<Modal.Open opens='addVehicle'>
-				<Button type='button'>Dodaj stanowisko</Button>
+				<Button type='button'>Dodaj magazyn</Button>
 			</Modal.Open>
 			<Modal.Window name='addVehicle'>
 				<AddStorageModal onCloseModal={() => undefined} />

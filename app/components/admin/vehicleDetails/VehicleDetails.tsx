@@ -5,7 +5,7 @@ import Spinner from '../../Spinner';
 import Modal from '../../Modal';
 import VehicleDismantlingModal from './VehicleDismantlingModal';
 import VehicleDismantlingCertificateModal from './VehicleDismantlingCertificateModal';
-import AssignWasteModal from './AssignWasteModal';
+import AssignedWastes from './AssignedWastes';
 
 interface VehicleDetailsProps {
 	vehicleId: number;
@@ -21,6 +21,8 @@ export default function VehicleDetails({ vehicleId }: VehicleDetailsProps) {
 			year: 'numeric',
 			month: '2-digit',
 			day: '2-digit',
+			hour: '2-digit',
+			minute: '2-digit',
 		};
 		return date.toLocaleDateString('pl-PL', options);
 	}
@@ -99,7 +101,7 @@ export default function VehicleDetails({ vehicleId }: VehicleDetailsProps) {
 				<Info label='Wartość przyjęcia' value={`${vehicle?.price} zł`} />
 			</div>
 
-			<p className='text-3xl font-semibold  py-8'>Właściciele pojazdu</p>
+			<p className='text-3xl font-semibold py-8'>Właściciele pojazdu</p>
 			<table className='min-w-full rounded-md overflow-hidden'>
 				<thead className='bg-main text-white'>
 					<tr className='text-left'>
@@ -125,22 +127,7 @@ export default function VehicleDetails({ vehicleId }: VehicleDetailsProps) {
 					))}
 				</tbody>
 			</table>
-
-			<div className='flex justify-between items-center py-8'>
-				<p className='text-3xl font-semibold'>Przypisane odpady</p>
-				<div className='space-x-2'>
-					<Modal>
-						<Modal.Open opens='vehicle_status'>
-							<button className='bg-main hover:bg-mainHover text-white font-medium py-2 px-4 rounded-lg transition-colors'>
-								Przypisz odpady
-							</button>
-						</Modal.Open>
-						<Modal.Window name='vehicle_status'>
-							<AssignWasteModal onCloseModal={() => undefined} />
-						</Modal.Window>
-					</Modal>
-				</div>
-			</div>
+			<AssignedWastes vehicle={vehicle} />
 		</div>
 	);
 }
