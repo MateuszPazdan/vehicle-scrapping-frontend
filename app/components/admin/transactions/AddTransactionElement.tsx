@@ -1,7 +1,7 @@
 'use client';
 
-import Button from '../Button';
-import Modal from '../Modal';
+import Button from '../../Button';
+import Modal from '../../Modal';
 import AddTransactionModal from './AddTransactionModal';
 
 export default function AddTransactionElement() {

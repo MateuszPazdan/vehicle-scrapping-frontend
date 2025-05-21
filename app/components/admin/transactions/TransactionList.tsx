@@ -1,7 +1,7 @@
 'use client';
 
-import Spinner from '../Spinner';
 import { useRetrieveTransactionsQuery } from '@/app/_redux/features/transactionApiSlice';
+import Spinner from '../../Spinner';
 
 export default function TransactionList() {
 	const { data: transactions, isLoading } = useRetrieveTransactionsQuery();

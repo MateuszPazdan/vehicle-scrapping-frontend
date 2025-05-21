@@ -1,5 +1,5 @@
-import AddTransactionElement from '@/app/components/transactions/AddTransactionElement';
-import TransactionList from '@/app/components/transactions/TransactionList';
+import AddTransactionElement from '@/app/components/admin/transactions/AddTransactionElement';
+import TransactionList from '@/app/components/admin/transactions/TransactionList';
 
 export default function page() {
 	return (

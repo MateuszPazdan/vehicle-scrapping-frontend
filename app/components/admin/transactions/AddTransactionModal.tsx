@@ -4,15 +4,16 @@ import {
 	useRetrieveTransactionsQuery,
 } from '@/app/_redux/features/transactionApiSlice';
 import { toast } from 'react-toastify';
-import ModalHeader from '../ModalHeader';
-import Button from '../Button';
+
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 import {
 	Storage,
 	useRetrieveStoragesQuery,
 } from '@/app/_redux/features/storageApiSlice';
-import ChooseStorage from '../admin/storage/ChooseStorage';
+import ModalHeader from '../../ModalHeader';
+import ChooseStorage from '../storage/ChooseStorage';
+import Button from '../../Button';
 
 export default function AddTransactionModal({
 	onCloseModal,
