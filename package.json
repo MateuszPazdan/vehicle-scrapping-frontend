@@ -10,6 +10,7 @@
 	},
 	"dependencies": {
 		"@reduxjs/toolkit": "^2.5.1",
+		"async-mutex": "^0.5.0",
 		"cross-env": "^7.0.3",
 		"framer-motion": "^12.0.6",
 		"fs-js": "^1.0.6",

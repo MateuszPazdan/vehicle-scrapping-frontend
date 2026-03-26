@@ -19,7 +19,6 @@ export default function StorageStatusModal({
 			})
 			.catch((error) => {
 				toast.error(error.message ?? 'Wystąpił błąd przy generowaniu raportu');
-				console.log(error);
 			});
 	}
 

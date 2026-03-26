@@ -40,7 +40,6 @@ export default function AddVehicleModal({
 	});
 
 	const onSubmit = async (data: VehicleBody) => {
-		console.log(data.price, data.weight, data.year_of_production);
 		createVehicle({ ...data, owners: owners.map((owner) => owner.pesel) })
 			.unwrap()
 			.then(() => {
@@ -49,9 +48,8 @@ export default function AddVehicleModal({
 				onCloseModal();
 			})
 			.catch((error) => {
-				// console.log(error);
 				toast.error(
-					error.data.message || 'Wystąpił błąd podczas dodawania pojazdu!'
+					error.data.message || 'Wystąpił błąd podczas dodawania pojazdu!',
 				);
 			});
 	};
