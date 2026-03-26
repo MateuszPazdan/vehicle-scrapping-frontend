@@ -1,5 +1,4 @@
 import RequireAuth from '@/app/_utils/RequireAuth';
-
 import MobileNav from '@/app/components/admin/panel/MobileNav';
 import Nav from '@/app/components/admin/panel/Nav';
 
