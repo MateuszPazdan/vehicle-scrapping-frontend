@@ -1,5 +1,5 @@
 {
-	"name": "USwP",
+	"name": "vsapp",
 	"version": "0.1.0",
 	"private": true,
 	"scripts": {
@@ -23,7 +23,7 @@
 		"react-icons": "^5.4.0",
 		"react-redux": "^9.2.0",
 		"react-toastify": "^11.0.3",
-		"USwP": "file:"
+		"vsapp": "file:"
 	},
 	"devDependencies": {
 		"@types/node": "^20",

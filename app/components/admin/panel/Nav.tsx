@@ -48,7 +48,7 @@ function Nav() {
 					href='/admin/panel'
 					className='text-main hover:text-mainHover transition-colors duration-300 flex flex-col w-fit items-center px-10 py-10 mr-20'
 				>
-					<span className={`${climate_crisit.className}  text-4xl`}>USwP</span>
+					<span className={`${climate_crisit.className}  text-4xl`}>vsapp</span>
 				</Link>
 
 				<div>

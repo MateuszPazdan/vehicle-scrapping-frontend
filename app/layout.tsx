@@ -10,7 +10,7 @@ const comfortaa = Comfortaa({
 });
 
 export const metadata: Metadata = {
-	title: 'USwP',
+	title: 'vsapp',
 };
 
 export default function RootLayout({
