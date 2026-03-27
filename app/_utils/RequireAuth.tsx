@@ -4,7 +4,6 @@ import { useRouter } from 'next/navigation';
 import { useAppSelector } from '../_redux/hooks';
 import Spinner from '../components/Spinner';
 import { useEffect } from 'react';
-import { toast } from 'react-toastify';
 
 interface RequireAuthProps {
 	children: React.ReactNode;
@@ -16,9 +15,6 @@ export default function RequireAuth({ children }: RequireAuthProps) {
 
 	useEffect(() => {
 		if (!isLoading && !isAuthenticated) {
-			toast.error(
-				'Zaloguj się, aby skorzystać ze wszystkich funkcjonalności aplikacji.',
-			);
 			router.push('/');
 		}
 	}, [isLoading, isAuthenticated, router]);
@@ -30,7 +26,6 @@ export default function RequireAuth({ children }: RequireAuthProps) {
 			</div>
 		);
 	}
-
 
 	return <>{children}</>;
 }

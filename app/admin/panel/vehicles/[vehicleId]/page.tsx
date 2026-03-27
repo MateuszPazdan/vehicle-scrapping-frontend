@@ -1,3 +1,4 @@
+import RequireRole from '@/app/_utils/RequireRole';
 import VehicleDetails from '@/app/components/admin/vehicleDetails/VehicleDetails';
 
 interface Params {
@@ -7,7 +8,9 @@ interface Params {
 export default function page({ params }: { params: Params }) {
 	return (
 		<div className='px-8 py-10'>
-			<VehicleDetails vehicleId={Number(params.vehicleId)} />
+			<RequireRole roles={['EMPLOYEE']}>
+				<VehicleDetails vehicleId={Number(params.vehicleId)} />
+			</RequireRole>
 		</div>
 	);
 }

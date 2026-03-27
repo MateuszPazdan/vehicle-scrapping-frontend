@@ -28,10 +28,10 @@ function LoginForm() {
 	const onSubmit: SubmitHandler<FieldValues> = (data) => {
 		login({ email: data.email, password: data.password })
 			.unwrap()
-			.then(() => {
-				router.push('/admin/panel');
-				dispatch(setAuth());
+			.then((data) => {
+				dispatch(setAuth({ roles: data.roles }));
 				refetch();
+				router.push('/admin/panel');
 				toast.success('Zalogowano pomyślnie');
 			})
 			.catch(() => {

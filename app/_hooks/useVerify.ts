@@ -11,8 +11,8 @@ export default function useVerify() {
 	useEffect(() => {
 		verifyToken(undefined)
 			.unwrap()
-			.then(() => {
-				dispatch(setAuth());
+			.then((data) => {
+				dispatch(setAuth({ roles: data.roles }));
 			})
 			.finally(() => {
 				dispatch(finishInitialLoad());

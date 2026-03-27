@@ -32,7 +32,14 @@ const baseQueryWithReauth: BaseQueryFn<
 					extraOptions,
 				);
 				if (refreshResult.data) {
-					api.dispatch(setAuth());
+					const data = refreshResult.data as { roles: string[] };
+
+					api.dispatch(
+						setAuth({
+							roles: data.roles,
+						}),
+					);
+
 					result = await baseQuery(args, api, extraOptions);
 				} else {
 					api.dispatch(logout());

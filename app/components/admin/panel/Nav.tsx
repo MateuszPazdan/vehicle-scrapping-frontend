@@ -12,7 +12,7 @@ import {
 import NavElement from './NavElement';
 import Button from '../../Button';
 import { LiaCarCrashSolid } from 'react-icons/lia';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { useLogoutMutation } from '@/app/_redux/features/authApiSlice';
 import { logout as logoutUser } from '@/app/_redux/features/authSlice';
 import { useAppDispatch } from '@/app/_redux/hooks';
@@ -28,11 +28,12 @@ function Nav() {
 	const pathname = usePathname();
 	const [logout] = useLogoutMutation();
 	const dispatch = useAppDispatch();
-
+	const router = useRouter();
 	function handleLogout() {
-		logout({})
+		logout(undefined)
 			.unwrap()
 			.then(() => {
+				router.replace('/');
 				dispatch(logoutUser());
 				toast.success('Wylogowano pomyślnie');
 			})

@@ -1,3 +1,4 @@
+import RequireRole from '@/app/_utils/RequireRole';
 import HelloHeader from '@/app/components/admin/panel/HelloHeader';
 import { Metadata } from 'next';
 
@@ -8,7 +9,9 @@ export const metadata: Metadata = {
 export default function page() {
 	return (
 		<div>
-			<HelloHeader />
+			<RequireRole roles={['USER']}>
+				<HelloHeader />
+			</RequireRole>
 		</div>
 	);
 }
