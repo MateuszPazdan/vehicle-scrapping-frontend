@@ -13,18 +13,22 @@ interface RequireRoleProps {
 }
 
 function RequireRole({ children, roles }: RequireRoleProps) {
-	const { isLoading, roles: userRoles } = useAppSelector((state) => state.auth);
+	const {
+		isLoading,
+		roles: userRoles,
+		isAuthenticated,
+	} = useAppSelector((state) => state.auth);
 
 	const router = useRouter();
 
 	useEffect(() => {
 		const hasAccess = roles.some((role) => userRoles.includes(role));
 
-		if (!hasAccess && !isLoading) {
+		if (!hasAccess && !isLoading && isAuthenticated) {
 			toast.error('Brak dostępu');
 			router.back();
 		}
-	}, [isLoading, userRoles, roles, router]);
+	}, [isLoading, userRoles, roles, router, isAuthenticated]);
 
 	if (isLoading) {
 		return (

@@ -15,7 +15,7 @@ export default function RequireAuth({ children }: RequireAuthProps) {
 
 	useEffect(() => {
 		if (!isLoading && !isAuthenticated) {
-			router.push('/');
+			router.replace('/');
 		}
 	}, [isLoading, isAuthenticated, router]);
 
