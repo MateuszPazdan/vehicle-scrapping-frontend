@@ -41,7 +41,17 @@ const ownerApiSlice = apiSlice.injectEndpoints({
 				params: filters,
 			}),
 		}),
+		getAddress: builder.query<{ formatted_address: string }, string>({
+			query: (address) => ({
+				url: `/address?address=${encodeURIComponent(address)}`,
+				method: 'GET',
+			}),
+		}),
 	}),
 });
 
-export const { useCreateOwnerMutation, useRetrieveOwnersQuery } = ownerApiSlice;
+export const {
+	useCreateOwnerMutation,
+	useRetrieveOwnersQuery,
+	useLazyGetAddressQuery,
+} = ownerApiSlice;
