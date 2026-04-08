@@ -22,6 +22,7 @@ function LoginForm() {
 		handleSubmit,
 		formState: { errors },
 		getValues,
+		resetField,
 	} = useForm<FieldValues>();
 	const [login, { isLoading }] = useLoginMutation();
 
@@ -34,8 +35,15 @@ function LoginForm() {
 				router.push('/admin/panel');
 				toast.success('Zalogowano pomyślnie');
 			})
-			.catch(() => {
-				toast.error('Niepoprawne dane logowania');
+			.catch((err) => {
+				if (err.status === 429) {
+					toast.error('Zbyt wiele prób logowania. Spróbuj ponownie później.');
+				} else {
+					toast.error(err.message || 'Niepoprawne dane logowania');
+				}
+			})
+			.finally(() => {
+				resetField('password');
 			});
 	};
 
