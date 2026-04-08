@@ -15,7 +15,7 @@ function HelloHeader() {
 					vsapp
 				</span>
 
-				<span className='text-xl'>Panel administracyjny</span>
+				<span className='text-xl'>Kasacja pojazdów</span>
 			</p>
 		</div>
 	);

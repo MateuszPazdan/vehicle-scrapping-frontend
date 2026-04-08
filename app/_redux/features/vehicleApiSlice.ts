@@ -28,6 +28,13 @@ export interface Vehicle {
 	price: number;
 }
 
+export interface AvailableVehicle {
+	id: number;
+	brand: string;
+	model: string;
+	year_of_production: number;
+}
+
 export interface VehicleDetails extends Vehicle {
 	owners: Owner[];
 }
@@ -85,6 +92,14 @@ const vehiclesApiSlice = apiSlice.injectEndpoints({
 				url: `/vehicles/status/${id}`,
 				method: 'PATCH',
 			}),
+			invalidatesTags: ['AvailableVehicles'],
+		}),
+		retrieveAvailableVehicles: builder.query<AvailableVehicle[], void>({
+			query: () => ({
+				url: '/vehicles/available',
+				method: 'GET',
+			}),
+			providesTags: ['AvailableVehicles'],
 		}),
 	}),
 });
@@ -95,4 +110,5 @@ export const {
 	useRetrieveVehicleQuery,
 	useRetrieveFiltersInfoQuery,
 	useDismantleVehicleMutation,
+	useRetrieveAvailableVehiclesQuery,
 } = vehiclesApiSlice;

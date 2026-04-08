@@ -1,9 +1,10 @@
 import RequireRole from '@/app/_utils/RequireRole';
+import AvailableVehicles from '@/app/components/admin/panel/AvailableVehicles';
 import HelloHeader from '@/app/components/admin/panel/HelloHeader';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-	title: 'vsapp | Panel administratora',
+	title: 'vsapp',
 };
 
 export default function page() {
@@ -11,6 +12,7 @@ export default function page() {
 		<div>
 			<RequireRole roles={['USER']}>
 				<HelloHeader />
+				<AvailableVehicles />
 			</RequireRole>
 		</div>
 	);
