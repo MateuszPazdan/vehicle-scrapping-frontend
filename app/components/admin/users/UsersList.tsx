@@ -39,7 +39,7 @@ export default function UsersList() {
 
 	return (
 		<div className='mx-auto p-6'>
-			{isLoading ? (
+			{isLoading || isUserLoading ? (
 				<div className='py-10'>
 					<Spinner size='medium' />
 				</div>
