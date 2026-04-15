@@ -95,6 +95,13 @@ function Nav() {
 					>
 						Raporty
 					</NavElement>
+					<NavElement
+						href='/admin/panel/users'
+						icon={<BsPerson />}
+						isChoosen={pathname.match('users') ?? false}
+					>
+						Użytkownicy
+					</NavElement>
 				</div>
 
 				<div className='flex justify-center items-center w-full py-10'>

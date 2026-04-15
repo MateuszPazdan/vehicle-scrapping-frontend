@@ -1,3 +1,4 @@
+import { Roles } from '@/app/_utils/roles';
 import { apiSlice } from '../services/apiSlice';
 
 export interface User {
@@ -6,12 +7,17 @@ export interface User {
 	is_admin: boolean;
 	created_at: string;
 	updated_at: string;
+	roles: Roles;
 }
 
 const authApiSlice = apiSlice.injectEndpoints({
 	endpoints: (builder) => ({
 		retrieveUser: builder.query<User, void>({
 			query: () => ({ url: '/users/me', method: 'GET' }),
+		}),
+		retrieveAllUsers: builder.query<User[], void>({
+			query: () => ({ url: '/users/all', method: 'GET' }),
+			providesTags: ['Users'],
 		}),
 		verifyToken: builder.mutation({
 			query: () => ({
@@ -39,13 +45,23 @@ const authApiSlice = apiSlice.injectEndpoints({
 				method: 'POST',
 			}),
 		}),
+		updateRoles: builder.mutation({
+			query: ({ userId, roles }) => ({
+				url: `/users/roles`,
+				method: 'PUT',
+				body: { id: userId, roles },
+			}),
+			invalidatesTags: ['Users'],
+		}),
 	}),
 });
 
 export const {
 	useRetrieveUserQuery,
+	useRetrieveAllUsersQuery,
 	useVerifyTokenMutation,
 	useLoginMutation,
 	useRegisterMutation,
 	useLogoutMutation,
+	useUpdateRolesMutation,
 } = authApiSlice;
