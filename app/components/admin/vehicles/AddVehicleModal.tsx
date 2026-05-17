@@ -101,8 +101,8 @@ export default function AddVehicleModal({
 						placeholder='VIN pojazdu'
 						{...register('vin', { required: 'Podaj VIN' })}
 						className='border border-gray/30 rounded-lg px-3 py-2'
-						minLength={11}
-						maxLength={11}
+						minLength={17}
+						maxLength={17}
 					/>
 					<p className='text-red-500 text-xs pt-1'>{errors.vin?.message}</p>
 				</div>
@@ -132,7 +132,7 @@ export default function AddVehicleModal({
 							required: 'Podaj numer dowodu rejestracyjnego pojazdu',
 						})}
 						className='border border-gray/30 rounded-lg px-3 py-2'
-						maxLength={7}
+						maxLength={10}
 					/>
 					<p className='text-red-500 text-xs pt-1'>
 						{errors.registration_certificate_number?.message}
